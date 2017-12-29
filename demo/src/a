@@ -1,0 +1,6 @@
+for _ in range(int(input())):
+ t=input()
+ s=ord(t[0])+ord(t[1])+ord(t[2])
+ m=ord(t[3])+ord(t[4])+ord(t[5])
+ if s is m:print('true')
+ else:print('false')
