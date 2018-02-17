@@ -1,6 +1,5 @@
 import P5Base from './P5Base'
 import P5SketchInstance from "./sketch/P5SketchInstance";
-const p5 = require('p5')
 
 export default class P5Root extends P5Base {
   public target: HTMLElement
@@ -10,6 +9,6 @@ export default class P5Root extends P5Base {
     super(false, null, null)
 
     this.target = target
-    this.sketch = new P5SketchInstance(new p5())
+    this.sketch = new P5SketchInstance()
   }
 }

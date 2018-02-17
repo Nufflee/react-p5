@@ -3,6 +3,8 @@ declare class p5 {
 
   // src/3d/3d_primitives.js
 
+  constructor(sketchFunc: (sketch: p5) => void)
+
   /**
    * Draw a plane with given a width and height
    */
@@ -1327,6 +1329,11 @@ declare class p5 {
    * Draws text to the screen.
    */
   text(str: string, x: number, y: number, x2: number, y2: number): any
+
+  /**
+   * Draws text to the screen.
+   */
+  text(str: string, x: number, y: number): any
 
   /**
    * Sets the current font that will be drawn with the text() function.

@@ -17,11 +17,11 @@ class P5Sketch extends P5Base {
   }
 
   renderChildNode() {
-    for (let i = 0; i < this.children.length; i += 1) {
+    for (let i = 0; i < this.children.length; i++) {
       if (this.children[i] instanceof P5Text) {
-        addText(this.children[i])
+        addText(this.children[i] as P5Text)
       } else if (this.children[i] instanceof P5Base) {
-        this.children[i].render()
+        (this.children[i] as P5Base).render()
       }
     }
   }
