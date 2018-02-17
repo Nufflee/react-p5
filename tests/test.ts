@@ -1,17 +1,18 @@
 import P5Base from '../src/lib/P5Base'
 import P5Root from "../src/lib/P5Root";
-const expect = require('chai').expect
+
+declare function expect(args: any): any
 
 describe('P5Base', () => {
-  it('should append children', () => {
+  test('should append children', () => {
     const base = new P5Base(false, null, null)
 
     base.appendChild(new P5Base(false, null, null))
 
-    expect(base.children.length).to.be.equal(1)
+    expect(base.children.length).toBe(1)
   })
 
-  it('should remove children', () => {
+  test('should remove children', () => {
     const base = new P5Base(false, null, null)
 
     const child = new P5Base(false, null, null)
@@ -19,28 +20,28 @@ describe('P5Base', () => {
     base.appendChild(child)
     base.removeChild(child)
 
-    expect(base.children.length).to.be.equal(0)
+    expect(base.children.length).toBe(0)
   })
 
-  it('should have a parent', () =>{
+  test('should have a parent', () =>{
     const base = new P5Base(false, null, null)
 
     const child = new P5Base(false, null, null)
 
     base.appendChild(child)
 
-    expect(child.parent).to.be.equal(base)
+    expect(child.parent).toBe(base)
   })
 
-  it('shouldn\'t remove others\' children', () => {
+  test('shouldn\'t remove others\' children', () => {
     const base = new P5Base(false, null, null)
 
     base.appendChild(new P5Base(false, null, null))
 
-    expect(() => base.removeChild(new P5Base(false, null, null))).to.throw('Cannot remove child because this is not it\'s parent.')
+    expect(() => base.removeChild(new P5Base(false, null, null))).toThrowError('Cannot remove child because this is not it\'s parent.')
   })
 
-  it('should have a root', () => {
+  test('should have a root', () => {
     const root = new P5Root(null)
     const base = new P5Base(false, root, null)
 
@@ -52,22 +53,22 @@ describe('P5Base', () => {
     child.appendChild(child2)
     child2.appendChild(child3)
 
-    expect(child3.root).to.be.equal(root)
+    expect(child3.root).toBe(root)
   })
 
-  it('should have props', () => {
+  test('should have props', () => {
     const base = new P5Base(false, null, null)
 
     base.props = {
       textValue: 'text'
     }
 
-    expect(base.props).to.deep.equal({
+    expect(base.props).toEqual({
       textValue: 'text'
     })
   })
 
-  it('should update props', () =>{
+  test('should update props', () =>{
     const base = new P5Base(false, null, null)
 
     base.props = {
@@ -78,10 +79,10 @@ describe('P5Base', () => {
       textValue: 'text2'
     }
 
-    expect(base.props.textValue).to.be.equal('text2')
+    expect(base.props.textValue).toBe('text2')
   })
 
-  it('', () => {
+  test('', () => {
 
   })
 })
