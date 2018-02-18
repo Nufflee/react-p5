@@ -1,6 +1,6 @@
+import {ReactElement} from 'react'
 import { P5Renderer } from './P5Reconciler'
 import {createElement} from './utils'
-import {ReactElement} from 'react'
 
 export default function render<T>(element: ReactElement<T>, target: HTMLElement) {
   P5Renderer.injectIntoDevTools({

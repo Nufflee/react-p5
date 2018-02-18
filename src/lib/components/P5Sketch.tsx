@@ -1,7 +1,7 @@
 import P5Base from "../P5Base"
-import P5Root from "../P5Root"
 import {addText} from "../P5Manager"
-import P5Text from "./P5Text";
+import P5Root from "../P5Root"
+import P5Text from "./P5Text"
 
 class P5Sketch extends P5Base {
   constructor(root: P5Root, props: P5Props) {

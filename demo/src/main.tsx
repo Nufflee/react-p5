@@ -5,13 +5,10 @@ class App extends React.Component {
   render() {
     return (
       <sketch>
-        <p>Test</p>
+        <p>Tes2t</p>
       </sketch>
     )
   }
 }
 
 render(<App/>, document.getElementById('root') as HTMLElement)
-
-
-

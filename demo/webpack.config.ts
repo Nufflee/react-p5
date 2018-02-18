@@ -14,11 +14,24 @@ export default function webpackConfig() {
       filename: '[name].bundle.js',
       path: path.join(__dirname, 'dist')
     },
+    devtool: 'source-map',
     resolve: {
       extensions: ['.ts', '.tsx', '.js']
     },
     module: {
       rules: [
+        {
+          test: /\.(tsx|ts)?$/,
+          enforce: 'pre',
+          use: [
+            {
+              loader: 'tslint-loader',
+              options: {
+                fix: true
+              }
+            }
+          ]
+        },
         {
           test: /\.(tsx|ts)?$/,
           use: [

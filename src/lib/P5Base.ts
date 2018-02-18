@@ -1,46 +1,57 @@
 import P5Root from "./P5Root"
-import P5SketchInstance from "./sketch/P5SketchInstance";
+import P5SketchInstance from "./sketch/P5SketchInstance"
 
 export default class P5Base {
-  //TODO: Do I need this?
-  protected p5Sketch: P5SketchInstance
-  private _props: P5Props
   public children: Array<P5Base | string> = []
   public parent: P5Base
   public root: P5Root
-  //TODO: Make this work
+  // TODO: Make this work
   public id: number
-  //TODO: Move text to P5Text
+  // TODO: Move text to P5Text
   public isText: boolean
 
-  constructor(isText: boolean, root: P5Root, props: P5Props/*, p5Sketch: P5SketchInstance*/) {
+  // TODO: Do I need this?
+  protected sketch: P5SketchInstance
+
+  private _props: P5Props
+
+  constructor(isText: boolean, root: P5Root, props: P5Props/*, sketch: P5SketchInstance*/) {
     this.isText = isText
     this.root = root
     this._props = props
 
-    if (root)
-      this.p5Sketch = root.p5Sketch
-}
+    if (root) {
+      this.sketch = root.sketch
+    }
+  }
 
   updateProps(nextProps: P5Props) {
-    this._props = nextProps
+    this.props = nextProps
 
     this.updateP5()
   }
 
   appendChild(child: P5Base | string) {
-    if(!child)
+    if (!child) {
       return
+    }
 
-    if (!this.isText  && typeof child === 'string') {
+    if (!this.isText && typeof child === 'string') {
       throw Error('Can not append text child to a non-text component')
     }
 
-    child = child as P5Base
+    if (typeof child === 'string') {
+/*
+      child = new P5Text(this.root, { children: [child as string] })
+*/
+    console.log('dayum')
+    } else {
+      child = child as P5Base
+    }
 
     this.children.push(child)
 
-    if(typeof child !== 'string') {
+    if (typeof child !== 'string') {
       child.parent = this
       child.root = this.root
     }
@@ -64,7 +75,7 @@ export default class P5Base {
 
   render() {
     for (const child of this.children) {
-      if(child instanceof P5Base) {
+      if (child instanceof P5Base) {
         child.render()
       }
     }

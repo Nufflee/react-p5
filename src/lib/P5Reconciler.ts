@@ -2,25 +2,27 @@ import P5Text from "./components/P5Text"
 
 const Reconciler = require('react-reconciler')
 const emptyObject = require('fbjs/lib/emptyObject')
-import {createElement, getHostContextNode} from './utils'
 import P5Base from './P5Base'
 import P5Root from './P5Root'
+import {createElement, getHostContextNode} from './utils'
 
 const hostConfig = {
   appendInitialChild(parent: P5Base | Window, child: P5Base) {
-    if(!parent || parent instanceof Window)
+    if (!parent || parent instanceof Window) {
       return
+    }
 
-    if (parent.appendChild)
+    if (parent.appendChild) {
       parent.appendChild(child)
+    }
   },
 
   createInstance(type: string, props: P5Props, root: P5Root, context: HostContext, fiber: FiberNode): P5Base | undefined {
     return createElement(type, root.target, props, root)
   },
 
-  createTextInstance(text: string, root: P5Root, context: HostContext, fiber: FiberNode): string {
-    return text
+  createTextInstance(text: string, root: P5Root, context: HostContext, fiber: FiberNode): P5Text {
+    return new P5Text(root, {children: [text]})
   },
 
   finalizeInitialChildren(instance: P5Base, type: string, props: P5Props, root: P5Root): boolean {
@@ -93,7 +95,7 @@ const hostConfig = {
     },
 
     commitTextUpdate(textInstance: P5Text, oldText: string, newText: string) {
-      //textInstance.textValue = newText
+      // textInstance.textValue = newText
     }
   }
 }

@@ -1,7 +1,7 @@
 import P5Container, {default as P5Sketch} from './components/P5Sketch'
-import P5Root from './P5Root'
 import P5Text from './components/P5Text'
-import P5SketchInstance from "./sketch/P5SketchInstance";
+import P5Root from './P5Root'
+import P5SketchInstance from "./sketch/P5SketchInstance"
 
 let rootNodeInstance: P5Root = null
 
